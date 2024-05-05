@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        width: 70%;
+        flex-wrap: wrap;
+      }
+
+      table,
+      thead,
+      tr,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        cursor: pointer;
+      }
+
+      td,
+      th {
+        border: 2px solid #dddddd;
+        /* border: 1px solid #1f1212; */
+        text-align: center;
+        background-color: azure;
+      }
+      a {
+        text-decoration: none;
+      }
+      .d-none {
+        display: none;
+      }
+      .btn {
+        color: white;
+        background-color: red;
+        width: 60px;
+        padding: 2px;
+        border-radius: 1px;
+        font-size: 20px;
+        text-align: center;
+        margin: 4px;
+        cursor: pointer;
+      }
+      .h1 {
+        margin-top: 5%;
+        font-weight: 500;
+        text-align: center;
+      }
+      .inputValue {
+        /* background-color:rgb(227, 220, 233); */
+        height: 34px;
+      }
+      .inputValue:focus {
+        border: 3px solid rgb(255, 0, 0);
+      }
+      .padding {
+        padding: 15px;
+      }
+      .hover:hover {
+        text-decoration: underline;
+        color: blue;
+      }
+      .data {
+        font-weight: 500;
+        text-align: center;
+      }
+      .backgroundColor {
+        background-color: rgb(110, 204, 110);
+        border: 2px solid black;
+      }
+      .border {
+        border: 1px solid #1f1212;
+      }
+      .margin {
+        margin-left: 10%;
+        margin-top: 5%;
+      }
+      .excelFileTable {
+        border: 3px solid #dddddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="file-list-container" class="excelfiles">
+      <h1 class="h1">EXCEL FILES</h1>
+
+      <table class="margin excelFileTable">
+        <thead>
+          <tr>
+            <th class="padding">S.No</th>
+            <th class="padding">FileName</th>
+          </tr>
+        </thead>
+        <tbody id="filelist-body"></tbody>
+      </table>
+    </div>
+
+    <div id="file-view-container" class="d-none">
+      <h1 class="data">EXCEL DATA</h1>
+      <div id="message"></div>
+      <div class="btn" onclick="back()">Back</div>
+      <div>
+        <div id="sheet-list"></div>
+        <div id="table-container"></div>
+      </div>
+    </div>
+
+    <script src="./services/home.js"></script>
+  </body>
+</html>
