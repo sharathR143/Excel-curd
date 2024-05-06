@@ -31,34 +31,25 @@ const createWindow = () => {
     const workbook = XLSX.readFile(directoryPath);
     const sheets = workbook.SheetNames;
     let excelData = [];
-
     sheets.forEach((sheetName) => {
-      // console.log(sheetName);
       const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {
         header: 1,
       });
       excelData.push(jsonData);
     });
-    // const sheet = workbook.Sheets[sheetName[0]];
-    // const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-    // win.webContents.send("send-file", jsonData);
     win.webContents.send("send-file", excelData, sheets);
   });
 
   ipcMain.on("get-updatedData", (event, ExcelData, fileName) => {
     const directoryPath = path.join(__dirname, "xlData", fileName);
-
     const workbook = XLSX.readFile(directoryPath);
     const sheets = workbook.SheetNames;
-    // const sheet = workbook.Sheets[sheets];
-
     sheets.forEach((sheetName, sheetIndex) => {
       XLSX.utils.sheet_add_aoa(
         workbook.Sheets[sheetName],
         ExcelData[sheetIndex]
       );
     });
-
     try {
       XLSX.writeFile(workbook, directoryPath);
       win.webContents.send("send-updatedData", "successfully updated..");
@@ -67,7 +58,6 @@ const createWindow = () => {
     }
   });
   win.loadFile("index.html");
-  // win.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
